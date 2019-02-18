@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonGo;
     Button buttonExit;
     Intent intent;
+    String orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonGo:
                 radioButtonId = radioGroupOrientationOption.getCheckedRadioButtonId();
                 intent = new Intent(this,MathActivity.class);
+//                Configuration orientation = new Configuration();
+
                 switch(radioButtonId){
                     case R.id.radioButtonLanscape:
-                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//                        orientation.orientation = Configuration.ORIENTATION_LANDSCAPE;
+//                        intent.putExtra("orientation",orientation);
+                        orientation = "LANDSCAPE";
+                        intent.putExtra("orientation",orientation);
+//                        intent = new Intent(this,MathActivity.class);
+//                        startActivity(intent);
                         break;
 
                     case R.id.radioButtonPortrait:
-                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                        orientation = "PORTRAIT";
+                        intent.putExtra("orientation",orientation);
+//                        intent = new Intent(this,MathActivity.class);
+//                        startActivity(intent);
                         break;
                 }
 
@@ -59,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+
+
+//    getResources().getConfiguration().orientation
 
 
 }
