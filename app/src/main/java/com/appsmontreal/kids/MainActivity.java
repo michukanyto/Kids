@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import model.Animation;
+import model.Sound;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RadioGroup radioGroupOrientationOption;
     int radioButtonId;
@@ -17,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonExit;
     Intent intent;
     String orientation;
+    Animation animate;
+    Sound play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +37,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonGo.setOnClickListener(this);
         buttonExit.setOnClickListener(this);
         radioButtonId = 0;
+        animate = new Animation();
+        play = new Sound(this);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.buttonGo:
+                animate.buttonRotateXanimation(buttonGo);
+                play.soundGoForward();
                 radioButtonId = radioGroupOrientationOption.getCheckedRadioButtonId();
                 intent = new Intent(this,MathActivity.class);
 //                Configuration orientation = new Configuration();
@@ -66,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonExit:
+                animate.buttonRotateXanimation(buttonExit);
+                play.soundExit();
                 finish();
                 break;
         }

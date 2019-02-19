@@ -19,11 +19,12 @@ import java.util.Random;
 
 import model.Animation;
 import model.Mathematic;
+import model.Sound;
 
 public class MathActivity extends AppCompatActivity implements View.OnClickListener {
 
     int[] numbers = {R.drawable.zero,R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five,R.drawable.six,R.drawable.seven,R.drawable.eight,R.drawable.nine};
-    int[] numbers1 = {R.drawable.zero1,R.drawable.one1,R.drawable.two1,R.drawable.three1,R.drawable.four1,R.drawable.five1,R.drawable.six1,R.drawable.seven1,R.drawable.eight1,R.drawable.nine1};
+
     String orientation;
     int indexNumber1;
     int indexNumber2;
@@ -36,6 +37,7 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
     EditText editTextResult;
     Random random = new Random();
     Animation animate;
+    Sound play;
     Mathematic calculation;
     boolean operator;
     boolean result;
@@ -98,6 +100,7 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
         calculation = new Mathematic(operator);
         editTextResult.setText("0");
         imageViewResult.setImageResource(R.drawable.sleep);
+        play = new Sound(this);
 
 
      }
@@ -107,14 +110,17 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.buttonStart:
+                animate.buttonRotateXanimation(buttonStart);
                 startGame();
                 initialize();
                 break;
 
             case R.id.buttonCheck:
+                animate.buttonRotateXanimation(buttonCheck);
                 checkGame();
                 break;
         }
+        play.soundGoForward();
     }
 
     private void startGame(){
@@ -144,10 +150,13 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
         result = calculation.makeOperation(indexNumber1,indexNumber2,Integer.parseInt(userAnswer));
         Toast.makeText(this,Boolean.toString(result) ,Toast.LENGTH_SHORT).show();
 
-        if(result)
+        if(result) {
             imageViewResult.setImageResource(R.drawable.smile);
-        else
+            play.soundOkAnswer();
+        }else{
             imageViewResult.setImageResource(R.drawable.nosmile);
+            play.soundWrongAnswer();
+        }
 
     }
 

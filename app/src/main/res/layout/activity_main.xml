@@ -9,8 +9,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroupOrientationOption"
-        android:layout_width="167dp"
-        android:layout_height="260dp"
+        android:layout_width="250dp"
+        android:layout_height="219dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -18,7 +18,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.445">
 
         <RadioButton
             android:id="@+id/radioButtonLanscape"
@@ -26,8 +27,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Landscape"
-            android:textAlignment="center" />
+            android:text="Multiplication"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/radioButtonPortrait"
@@ -35,14 +39,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Portrait" />
+            android:text="Addition"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </RadioGroup>
 
     <Button
         android:id="@+id/buttonExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="76dp"
         android:layout_marginTop="28dp"
         android:text="Exit"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,4 +67,17 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toEndOf="@+id/buttonExit"
         app:layout_constraintTop_toBottomOf="@+id/radioGroupOrientationOption" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="60dp"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="#af34d3"
+        android:text="KIDS MATH" />
 </android.support.constraint.ConstraintLayout>
