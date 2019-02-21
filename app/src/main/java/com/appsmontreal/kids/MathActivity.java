@@ -124,7 +124,7 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void startGame(){
-        CountDownTimer countDownTimer = new CountDownTimer(5000,150) {
+        CountDownTimer countDownTimer = new CountDownTimer(4000,150) {
             @Override
             public void onTick(long millisUntilFinished) {
                 indexNumber1 = random.nextInt(numbers.length);
@@ -133,6 +133,8 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
                 indexNumber2 = random.nextInt(numbers.length);
                 animate.widgetAnimation(imageViewNumber2);
                 imageViewNumber2.setImageResource(numbers[indexNumber2]);
+                editTextResult.setVisibility(View.VISIBLE);
+                buttonCheck.setVisibility(View.VISIBLE);
 
             }
 
@@ -146,16 +148,21 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void checkGame(){
-        String userAnswer = editTextResult.getText().toString();
-        result = calculation.makeOperation(indexNumber1,indexNumber2,Integer.parseInt(userAnswer));
-        Toast.makeText(this,Boolean.toString(result) ,Toast.LENGTH_SHORT).show();
+        try {
+            String userAnswer = editTextResult.getText().toString();
+            result = calculation.makeOperation(indexNumber1, indexNumber2, Integer.parseInt(userAnswer));
+            Toast.makeText(this, Boolean.toString(result), Toast.LENGTH_SHORT).show();
 
-        if(result) {
-            imageViewResult.setImageResource(R.drawable.smile);
-            play.soundOkAnswer();
-        }else{
-            imageViewResult.setImageResource(R.drawable.nosmile);
-            play.soundWrongAnswer();
+            if (result) {
+                imageViewResult.setImageResource(R.drawable.smile);
+                play.soundOkAnswer();
+            } else {
+                imageViewResult.setImageResource(R.drawable.nosmile);
+                play.soundWrongAnswer();
+            }
+
+        }catch(Exception e){
+            Toast.makeText(this,"Please the result should be a number",Toast.LENGTH_LONG).show();
         }
 
     }

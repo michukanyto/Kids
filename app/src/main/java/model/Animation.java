@@ -10,8 +10,8 @@ public class Animation {
 
     }
 
-    public void buttonRotateXanimation(View widget){
-        widget.animate().rotationX(360).setDuration(400);
+    public void buttonRotateXanimation(Button button){
+        button.animate().rotationX(360).setDuration(400);
     }
 
     public void buttonRotateYanimation(View widget){

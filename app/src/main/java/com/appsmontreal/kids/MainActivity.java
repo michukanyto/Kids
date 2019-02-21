@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import model.Animation;
 import model.Sound;
@@ -45,35 +46,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.buttonGo:
-                animate.buttonRotateXanimation(buttonGo);
-                play.soundGoForward();
-                radioButtonId = radioGroupOrientationOption.getCheckedRadioButtonId();
-                intent = new Intent(this,MathActivity.class);
+                if (radioGroupOrientationOption.getCheckedRadioButtonId() != -1){
+                    animate.buttonRotateXanimation(buttonGo);
+                    play.soundGoForward();
+                    radioButtonId = radioGroupOrientationOption.getCheckedRadioButtonId();
+                    intent = new Intent(this, MathActivity.class);
 //                Configuration orientation = new Configuration();
 
-                switch(radioButtonId){
-                    case R.id.radioButtonLanscape:
+                    switch (radioButtonId) {
+                        case R.id.radioButtonLanscape:
 //                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 //                        orientation.orientation = Configuration.ORIENTATION_LANDSCAPE;
 //                        intent.putExtra("orientation",orientation);
-                        orientation = "LANDSCAPE";
-                        intent.putExtra("orientation",orientation);
+                            orientation = "LANDSCAPE";
+                            intent.putExtra("orientation", orientation);
 //                        intent = new Intent(this,MathActivity.class);
 //                        startActivity(intent);
-                        break;
+                            break;
 
-                    case R.id.radioButtonPortrait:
+                        case R.id.radioButtonPortrait:
 //                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        orientation = "PORTRAIT";
-                        intent.putExtra("orientation",orientation);
+                            orientation = "PORTRAIT";
+                            intent.putExtra("orientation", orientation);
 //                        intent = new Intent(this,MathActivity.class);
 //                        startActivity(intent);
-                        break;
-                }
+                            break;
+                    }
 
-                startActivity(intent);
-                break;
-
+                    startActivity(intent);
+                    break;
+                }else{
+                    Toast.makeText(this,"Please select an operation",Toast.LENGTH_LONG).show();
+                    play.soundError();
+                    break;
+            }
             case R.id.buttonExit:
                 animate.buttonRotateXanimation(buttonExit);
                 play.soundExit();

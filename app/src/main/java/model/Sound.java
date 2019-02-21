@@ -39,6 +39,10 @@ public class Sound {
         playSound(mediaPlayer);
     }
 
+    public void soundError(){
+        mediaPlayer = MediaPlayer.create(context,R.raw.error);
+        playSound(mediaPlayer);
+    }
 
     private void playSound(MediaPlayer play){
         play.start();
