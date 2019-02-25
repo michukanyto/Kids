@@ -2,8 +2,6 @@ package com.appsmontreal.kids;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,12 +13,24 @@ import model.Animation;
 import model.Sound;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public enum ExtrasKey {
+        OPERATION,
+        ORIENTATION
+    }
+
+    public enum Operation {
+        SUM,
+        MULTIPLY
+    }
+
+
     RadioGroup radioGroupOrientationOption;
     int radioButtonId;
     Button buttonGo;
     Button buttonExit;
     Intent intent;
-    String orientation;
+//    String orientation;
     Animation animate;
     Sound play;
 
@@ -51,25 +61,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     play.soundGoForward();
                     radioButtonId = radioGroupOrientationOption.getCheckedRadioButtonId();
                     intent = new Intent(this, MathActivity.class);
-//                Configuration orientation = new Configuration();
 
                     switch (radioButtonId) {
                         case R.id.radioButtonLanscape:
-//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                        orientation.orientation = Configuration.ORIENTATION_LANDSCAPE;
-//                        intent.putExtra("orientation",orientation);
-                            orientation = "LANDSCAPE";
-                            intent.putExtra("orientation", orientation);
-//                        intent = new Intent(this,MathActivity.class);
-//                        startActivity(intent);
+
+                            intent.putExtra(ExtrasKey.ORIENTATION.name(), ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                            intent.putExtra(ExtrasKey.OPERATION.name(), Operation.MULTIPLY);
                             break;
 
                         case R.id.radioButtonPortrait:
-//                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                            orientation = "PORTRAIT";
-                            intent.putExtra("orientation", orientation);
-//                        intent = new Intent(this,MathActivity.class);
-//                        startActivity(intent);
+                            intent.putExtra(ExtrasKey.ORIENTATION.name(), ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                            intent.putExtra(ExtrasKey.OPERATION.name(), Operation.SUM);
                             break;
                     }
 

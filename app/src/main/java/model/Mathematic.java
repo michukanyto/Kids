@@ -1,26 +1,23 @@
 package model;
 
+import com.appsmontreal.kids.MainActivity;
+
 public class Mathematic {
-    private boolean operator;
+    private MainActivity.Operation operation;
     int result;
 
-    public Mathematic(boolean operator) {
-        this.operator = operator;
+    public Mathematic(MainActivity.Operation operator) {
+        this.operation = operator;
     }
 
-    public boolean isOperator() {
-        return operator;
-    }
-
-    public void setOperator(boolean operator) {
-        this.operator = operator;
-    }
 
     public boolean makeOperation(int index1, int index2, int userAnswer){
-        if (operator)
-          result = multiplication(index1,index2);
-        else
-          result = addition(index1,index2);
+        if (operation == MainActivity.Operation.MULTIPLY) {
+            result = multiplication(index1, index2);
+        }
+        else {
+            result = addition(index1, index2);
+        }
 
         return checkAnswer(result,userAnswer);
     }

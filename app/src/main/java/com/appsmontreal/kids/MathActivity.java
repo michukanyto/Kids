@@ -1,9 +1,6 @@
 package com.appsmontreal.kids;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.Random;
 
 import model.Animation;
@@ -39,7 +34,7 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
     Animation animate;
     Sound play;
     Mathematic calculation;
-    boolean operator;
+    MainActivity.Operation operator;
     boolean result;
 
 
@@ -49,17 +44,9 @@ public class MathActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math);
 
-        orientation = (String)getIntent().getExtras().getSerializable("orientation");
 
-        if (orientation.equals("LANDSCAPE")) {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            operator = false;
-
-        }else {
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            operator = true;
-
-        }
+        setRequestedOrientation((int) getIntent().getExtras().getSerializable(MainActivity.ExtrasKey.ORIENTATION.name()));
+        operator = (MainActivity.Operation) getIntent().getExtras().getSerializable(MainActivity.ExtrasKey.OPERATION.name());
         initialize();
 
     }
